@@ -62,13 +62,19 @@ namespace RC3.Unity.WFCDemo
 
         private void Update()
         {
-            if(_analysisOn)    // if (_status == CollapseStatus.Complete) AnalyzeModel(); 
+            if (_analysisOn)    // if (_status == CollapseStatus.Complete) AnalyzeModel(); 
             {
                 if (Input.GetKeyDown(KeyCode.A))
                 {
                     Debug.Log("Analyze methods called.");
                     AnalyzeModel();
-                   // MarkWeakTiles();
+                    MarkWeakTiles();
+                   
+
+                }
+                if (Input.GetKeyDown(KeyCode.S))
+                {
+                    ResetStructureAnalysisChanges();
                 }
             }
             
@@ -78,8 +84,12 @@ namespace RC3.Unity.WFCDemo
         {
             if (_weakTiles != null)
             {
-                foreach (var weak in _weakTiles)
-                    weak.Renderer.sharedMaterial.color = Color.red;
+                Debug.Log("weak tiles count " + _weakTiles.Count.ToString());
+                //foreach (var weak in _weakTiles)
+                //{
+                //    if (weak.Tile != _tileSet[0])
+                //        weak.GetComponent<Material>().color = Color.yellow;
+                //}
             }
         }
 
@@ -217,9 +227,14 @@ namespace RC3.Unity.WFCDemo
             AddJointsToConnected();
             AddGravity();
             CheckVelocity();
-            //RemoveGravity();
-            //RemoveJoints();
-            //ResetPositions();
+            
+        }
+
+        private void ResetStructureAnalysisChanges()
+        {
+            RemoveGravity();
+            RemoveJoints();
+            ResetPositions();
         }
 
         private float MinDistance()
@@ -297,9 +312,9 @@ namespace RC3.Unity.WFCDemo
 
                 if (_displacement > _allowedDisplacement)
                 {  
-                    v.GetComponent<Renderer>().material.color = Color.red;
                     _weakTiles.Add(v);
                     //_displacementValues[v.Tile.Index] = _displacement;
+                    // v.GetComponent<Renderer>().material.color = Color.red;
                 }
 
                 else if (_displacement < _allowedDisplacement)
@@ -337,15 +352,61 @@ namespace RC3.Unity.WFCDemo
         {
             foreach (var v in _verts)
             {
-               while(v.gameObject.GetComponent<FixedJoint>()!=null)
-                    Destroy(v.gameObject.GetComponent<FixedJoint>());
+                for (int i = 0; i < 14; i++)
+                {
+                    if (v.gameObject.GetComponent<FixedJoint>() != null)
+                     Destroy(v.gameObject.GetComponent<FixedJoint>()); 
+                }
+                
             }
+        }
+
+        private IEnumerable<Vector3> GetVertexPositions()
+        {
+            var gCreator = GetComponent<TruncatedOctahedralGraphCreator>();
+            var countX = gCreator.CountX;
+            var countY = gCreator.CountY;
+            var countZ = gCreator.CountZ;
+
+            for (int z = 0; z < countX; z++)
+            {
+                for (int y = 0; y < countY; y++)
+                {
+                    for (int x = 0; x < countX; x++)
+                        yield return new Vector3(x, y, z);
+                }
+            }
+
+            for (int z = 0; z < countZ; z++)
+            {
+                for (int y = 0; y < countY; y++)
+                {
+                    for (int x = 0; x < countX; x++)
+                        yield return new Vector3(x + 0.5f, y + 0.5f, z + 0.5f);
+                }
+            }
+        }
+
+        private List<Vector3> CreateVertexObjects()
+        {
+            List<Vector3> originalPos = new List<Vector3>();
+
+            foreach (var p in GetVertexPositions())
+            {
+                originalPos.Add(p * 2.0f);
+            }
+            return originalPos;
         }
 
         private void ResetPositions()
         {
-            foreach (var v in _verts)
-                v.transform.ResetTransform();
+            var position = CreateVertexObjects();
+
+            for(int i =0; i<_graph.VertexCount; i++)
+            {
+                var vertex = _verts[i];
+                vertex.transform.position = position[i];
+            }
         }
 
         #endregion Structure Analyzer

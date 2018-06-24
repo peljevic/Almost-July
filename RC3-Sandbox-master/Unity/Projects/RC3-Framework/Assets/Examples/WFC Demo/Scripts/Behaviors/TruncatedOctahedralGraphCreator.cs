@@ -21,16 +21,19 @@ namespace RC3.Unity.WFCDemo
 
         public int CountX
         {
+            get { return _countX; }
             set { _countX = value; }
         }
 
         public int CountY
         {
+            get { return _countY; }
             set { _countY = value; }
         }
 
         public int CountZ
         {
+            get { return _countZ; }
             set { _countZ = value; }
         }
 
@@ -45,7 +48,7 @@ namespace RC3.Unity.WFCDemo
             _tileGraph.Initialize(graph);
             _tileGraph.VertexObjects.AddRange(CreateVertexObjects());
 
-            transform.position = new Vector3(-_countX, -_countY, -_countZ); // center
+          //  transform.position = new Vector3(-_countX, -_countY, -_countZ); // center
         }
 
     
