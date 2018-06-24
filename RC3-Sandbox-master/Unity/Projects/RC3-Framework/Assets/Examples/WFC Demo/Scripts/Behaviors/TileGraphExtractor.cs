@@ -82,13 +82,16 @@ namespace RC3.Unity.WFCDemo
                     var neigh = _tileGraph.Graph.GetVertexNeighborOut(i, j);
 
                     if (_labelSet.Contains(label))
-                    {                      
-                        g1.AddEdge(i, j);
+                    {
+                        if (i != j)
+                        {
+                            g1.AddEdge(i, j);
 
-                        var lR = Instantiate(_lineRenderer, Vector3.zero, Quaternion.identity, _vertices[i].transform);
+                            var lR = Instantiate(_lineRenderer, Vector3.zero, Quaternion.identity, _vertices[i].transform);
 
-                        lR.GetComponent<LineRenderer>().SetPosition(0, _vertices[i].gameObject.transform.position);
-                        lR.GetComponent<LineRenderer>().SetPosition(1, _vertices[neigh].gameObject.transform.position);
+                            lR.GetComponent<LineRenderer>().SetPosition(0, _vertices[i].gameObject.transform.position);
+                            lR.GetComponent<LineRenderer>().SetPosition(1, _vertices[neigh].gameObject.transform.position);
+                        }
                     }
                 }
             }

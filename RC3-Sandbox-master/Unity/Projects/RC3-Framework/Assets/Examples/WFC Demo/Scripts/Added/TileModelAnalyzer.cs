@@ -38,6 +38,8 @@ namespace RC3.Unity.WFCDemo
         private List<VertexObject> _meshedTiles;
         private List<VertexObject> _weakTiles;
         private List<VertexObject> _stableTiles;
+        private int _kinematicTiles = 0;
+        private float _kinematicPercent = 0;
 
         private float _totalArea =0;
         private float[] _densities;
@@ -66,7 +68,7 @@ namespace RC3.Unity.WFCDemo
                 {
                     Debug.Log("Analyze methods called.");
                     AnalyzeModel();
-                    MarkWeakTiles();
+                   // MarkWeakTiles();
                 }
             }
             
@@ -74,8 +76,11 @@ namespace RC3.Unity.WFCDemo
 
         private void MarkWeakTiles()
         {
-            foreach (var weak in _weakTiles)
-                weak.Renderer.sharedMaterial.color = Color.red;
+            if (_weakTiles != null)
+            {
+                foreach (var weak in _weakTiles)
+                    weak.Renderer.sharedMaterial.color = Color.red;
+            }
         }
 
         /// <summary>
@@ -94,6 +99,11 @@ namespace RC3.Unity.WFCDemo
         {
             get { return _stableTiles; }
 
+        }
+
+        public float KinematicTilePercent
+        {
+            get { return _kinematicPercent * 100f; }
         }
 
         private void SeparateTiles()
@@ -115,7 +125,7 @@ namespace RC3.Unity.WFCDemo
         {
             AreaAnalyzer();
             CountAllDensities();
-            SunExposureAnalysis(); //TODO
+           // SunExposureAnalysis(); //TODO fix
             StructureAnalyzer();
         }
 
@@ -153,8 +163,7 @@ namespace RC3.Unity.WFCDemo
             {
                 _totalArea += v.Tile.Area;
             }
-
-            Debug.Log("Total Volume " + _totalArea);
+            //Debug.Log("Total Volume " + _totalArea);
             return _totalArea;
         }
 
@@ -168,13 +177,15 @@ namespace RC3.Unity.WFCDemo
         #region Density Analyzer 
 
         private void CountAllDensities()
-        {
+        {           
             for (int i = 0; i < _verts.Count; i++)
             {
                 _densities[i] = CountNeighbourhoodDensity(i);
+                //Debug.Log("Density is " + _densities[i]);
 
                 if (_densities[i] > 0.5f)
-                    Debug.Log("Density on vertex " + i + "is too high");
+                    _weakTiles.Add(_verts[i]);
+                        // Debug.Log("Density on vertex " + i + "is too high");
             }
         }
 
@@ -185,12 +196,15 @@ namespace RC3.Unity.WFCDemo
 
             foreach (var v in neigh)
             {
-                if (_meshedTiles.Contains(_verts[v]))
+                if (_verts[v].Tile != _tileSet[0])
                 {
                     neighCounter++;
                 }
             }
-            return neighCounter / 14;
+            float neighDensity = (float)neighCounter / 14.0f;
+            Debug.Log("Density is " + neighDensity.ToString());
+
+            return neighDensity;
         }
         
         #endregion Density Analyzer 
@@ -203,32 +217,51 @@ namespace RC3.Unity.WFCDemo
             AddJointsToConnected();
             AddGravity();
             CheckVelocity();
-            RemoveGravity();
-            RemoveJoints();
-            ResetPositions();
+            //RemoveGravity();
+            //RemoveJoints();
+            //ResetPositions();
         }
 
         private float MinDistance()
         {
-            if (_meshedTiles == null)
-                SeparateTiles();
+            _meshedTiles.Clear();
 
-            var minDistance = _meshedTiles.Min(v => v.transform.position.y);
+            foreach(var v in _verts)
+            {
+                if (v.Tile != _tileSet[0]) _meshedTiles.Add(v);
+            }
+           
+            var minDistance = 0.0f;
+            minDistance = _meshedTiles.Min(v => v.transform.position.y);
 
             Debug.Log("Minimun distance from the ground is" + minDistance);
             return minDistance;
         }
 
         private void AddKinematicToLowest()
-        {
+        {           
+            _kinematicPercent = 0.0f;
+            int roundN = 0;
+
             var minDistance = MinDistance();
             var tolerance = 1.0f;
 
-            foreach (var v in _meshedTiles)
+            foreach (var v in _verts)
+            {
                 v.Body.isKinematic = false;
+            }
 
-            foreach (var v in _meshedTiles.Where(v => SlurMath.ApproxEquals(v.transform.position.y, minDistance, tolerance)))
-                { v.Body.isKinematic = true; }
+            foreach (var kinematic in _meshedTiles.Where(kinematic => SlurMath.ApproxEquals(kinematic.transform.position.y, minDistance, tolerance)))
+            {
+                kinematic.Body.isKinematic = true;
+                _kinematicTiles++;
+            }
+
+            _kinematicPercent = _kinematicTiles / _meshedTiles.Count;
+            roundN = (int)(_kinematicPercent * 100);
+            Debug.Log("Non-empty tiles count is " + _meshedTiles.Count.ToString());
+            Debug.Log("Kinematic Tiles " + _kinematicPercent);
+            Debug.Log("Kinematic Tile in % " + roundN);
         }
         
         private void AddJointsToConnected()
@@ -256,7 +289,7 @@ namespace RC3.Unity.WFCDemo
             }
         }
 
-        private void CheckVelocity()
+        private void  CheckVelocity()
         {            
             foreach (var v in _verts)
             {
@@ -290,36 +323,14 @@ namespace RC3.Unity.WFCDemo
 
         private void AddGravity()
         {
-            if (_meshedTiles == null)
-            {
-                SeparateTiles();
-
-                if (_meshedTiles != null)
-                {
-                    foreach (var r in _meshedTiles)
-                    {
-                        var body = r.Body;
-                        body.useGravity = true;
-                    }
-                }
-            }
+            foreach (var v in _verts)
+                v.Body.useGravity = true;
         }
         
         private void RemoveGravity()
         {
-            if (_meshedTiles == null)
-            {
-                SeparateTiles();
-
-                if (_meshedTiles != null)
-                {
-                    foreach (var r in _meshedTiles)
-                    {
-                        var body = r.Body;
-                        body.useGravity = false;
-                    }
-                }
-            }
+            foreach (var v in _verts)
+                v.Body.useGravity = false;
         }
 
         private void RemoveJoints()

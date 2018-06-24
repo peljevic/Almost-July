@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: 0-0
   m_EditorClassIdentifier: 
   _mesh: {fileID: 0}
-  _material: {fileID: 2100000, guid: c5d707c476175f744bb2233f3bf16b91, type: 2}
+  _material: {fileID: 0}
   _labels:
   - 0
   - 0
@@ -28,5 +28,7 @@ MonoBehaviour:
   - 0
   - 0
   - 0
+  _index: 0
   _drag: 0
+  _weight: 0
   _area: 0

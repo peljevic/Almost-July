@@ -22,7 +22,7 @@ namespace RC3.Unity.WFCDemo
         private TileModelManager _manager;
         private TileSet _tileSet;
         private List<VertexObject> _meshedTiles;
-        List<VertexObject> _vertices;
+        List<VertexObject> _verts;
         private Digraph _graph;
 
         private float _velocitySum;
@@ -32,7 +32,7 @@ namespace RC3.Unity.WFCDemo
         private void Awake()
         {
             _graph = _grid.Graph;
-            _vertices = _grid.VertexObjects;
+            _verts = _grid.VertexObjects;
 
             _manager = GetComponent<TileModelManager>();
             _tileSet = _manager.TileSet;
@@ -50,7 +50,7 @@ namespace RC3.Unity.WFCDemo
         {
             for (int i = 0; i < _graph.VertexCount; i++)
             {
-                var v = _vertices[i];
+                var v = _verts[i];
 
                 if (v.Tile != _tileSet[0])
                 {
@@ -78,45 +78,49 @@ namespace RC3.Unity.WFCDemo
 
         private void ChangeBasedOnNeighbourhoodDensity()
         {
-            SeparateTiles();
-
-            for (int i = 0; i < _vertices.Count; i++)
+            for (int i = 0; i < _verts.Count; i++)
             {
-                int neighCounter = 0;
-                var neigh = _graph.GetVertexNeighborsOut(i);
+               var _densities = CountNeighbourhoodDensity(i);
+                //Debug.Log("Density is " + _densities[i]);
 
-                foreach(var v in neigh)
-                {
-                    if(_meshedTiles.Contains(_vertices[v]))
-                    {
-                        neighCounter++;
-                    }
-                }
+                if (_densities > 0.5f)
+                    Debug.Log("Density on vertex " + i + "is too high");
 
-                _vertices[i].Renderer.material.color = DisplayChange(neighCounter, 14);
+                _verts[i].Renderer.material.color = DisplayChange(_densities, 14);
             }
         }
 
+        private float CountNeighbourhoodDensity(int vertex)
+        {
+            int neighCounter = 0;
+            var neigh = _graph.GetVertexNeighborsOut(vertex);
+
+            foreach (var v in neigh)
+            {
+                if (_verts[v].Tile != _tileSet[0])
+                {
+                    neighCounter++;
+                }
+            }
+            float neighDensity = (float)neighCounter / 14.0f;
+            //Debug.Log("Density is " + neighDensity.ToString());
+
+            return neighDensity;
+        }
+
+
         private float MaxVelocity()
         {
-            var maxVelocity = _vertices.Max(v => v.transform.position.y);
+            var maxVelocity = _verts.Max(v => v.transform.position.y);
 
             return maxVelocity;
         }
 
-        private void TotalArea()
-        {
-            foreach (var v in _vertices)
-            {
-                _totalArea += v.Tile.Area;
-            }
-        }
-
         void ChangeBasedOnVelocity()
         {
-            for (int i = 0; i < _vertices.Count; i++)
+            for (int i = 0; i < _verts.Count; i++)
             {
-                var v = _vertices[i];
+                var v = _verts[i];
                 var currentVelocity = v.Body.velocity.magnitude;
 
                 if (v.Renderer != null)
@@ -124,13 +128,21 @@ namespace RC3.Unity.WFCDemo
             }
         }
 
+        private void TotalArea()
+        {
+            foreach (var v in _verts)
+            {
+                _totalArea += v.Tile.Area;
+            }
+        }
+        
         private void ChangeBasedOnArea()
         {
             TotalArea();
 
             Debug.Log(_totalArea);
                    
-            foreach (var v in _vertices)
+            foreach (var v in _verts)
             {               
                 var area = v.Area;
 
@@ -141,9 +153,9 @@ namespace RC3.Unity.WFCDemo
 
         private void RestoreOriginalColor()
         {
-            for (int i = 0; i < _vertices.Count; i++)
+            for (int i = 0; i < _verts.Count; i++)
             {
-                var v = _vertices[i];
+                var v = _verts[i];
 
                 for (int j = 0; j < _tileSet.Count; j++)
                 {
