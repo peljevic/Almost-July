@@ -1,0 +1,196 @@
+fileFormatVersion: 2
+guid: 34903c18f87a3fc46a849cc7d58b6dc4
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Green_Tiles_TILE_G07
+    100002: Green_Tiles_TILE_G08
+    100004: Green_Tiles_TILE_G09
+    100006: Green_Tiles_TILE_G10
+    100008: Green_Tiles_TILE_G11
+    100010: Green_Tiles_TILE_G12
+    100012: Green_Tiles_TILE_G13
+    100014: Green_Tiles_TILE_G14
+    100016: Green_Tiles_TILE_G15
+    100018: Green_Tiles_TILE_G16
+    100020: Green_Tiles_TILE_G17
+    100022: Green_Tiles_TILE_G18
+    100024: Green_Tiles_TILE_G19
+    100026: Green_Tiles_TILE_G20
+    100028: Green_Tiles_TILE_G21
+    100030: Green_Tiles_TILE_G22
+    100032: Green_Tiles_TILE_G23
+    100034: Green_Tiles_TILE_G24
+    100036: //RootNode
+    400000: Green_Tiles_TILE_G07
+    400002: Green_Tiles_TILE_G08
+    400004: Green_Tiles_TILE_G09
+    400006: Green_Tiles_TILE_G10
+    400008: Green_Tiles_TILE_G11
+    400010: Green_Tiles_TILE_G12
+    400012: Green_Tiles_TILE_G13
+    400014: Green_Tiles_TILE_G14
+    400016: Green_Tiles_TILE_G15
+    400018: Green_Tiles_TILE_G16
+    400020: Green_Tiles_TILE_G17
+    400022: Green_Tiles_TILE_G18
+    400024: Green_Tiles_TILE_G19
+    400026: Green_Tiles_TILE_G20
+    400028: Green_Tiles_TILE_G21
+    400030: Green_Tiles_TILE_G22
+    400032: Green_Tiles_TILE_G23
+    400034: Green_Tiles_TILE_G24
+    400036: //RootNode
+    2100000: Green_Tiles_TILE_G07Mat
+    2100002: Green_Tiles_TILE_G08Mat
+    2100004: Green_Tiles_TILE_G09Mat
+    2100006: Green_Tiles_TILE_G10Mat
+    2100008: Green_Tiles_TILE_G11Mat
+    2100010: Green_Tiles_TILE_G12Mat
+    2100012: Green_Tiles_TILE_G13Mat
+    2100014: Green_Tiles_TILE_G14Mat
+    2100016: Green_Tiles_TILE_G15Mat
+    2100018: Green_Tiles_TILE_G16Mat
+    2100020: Green_Tiles_TILE_G17Mat
+    2100022: Green_Tiles_TILE_G18Mat
+    2100024: Green_Tiles_TILE_G19Mat
+    2100026: Green_Tiles_TILE_G20Mat
+    2100028: Green_Tiles_TILE_G21Mat
+    2100030: Green_Tiles_TILE_G22Mat
+    2100032: Green_Tiles_TILE_G23Mat
+    2100034: Green_Tiles_TILE_G24Mat
+    2300000: Green_Tiles_TILE_G07
+    2300002: Green_Tiles_TILE_G08
+    2300004: Green_Tiles_TILE_G09
+    2300006: Green_Tiles_TILE_G10
+    2300008: Green_Tiles_TILE_G11
+    2300010: Green_Tiles_TILE_G12
+    2300012: Green_Tiles_TILE_G13
+    2300014: Green_Tiles_TILE_G14
+    2300016: Green_Tiles_TILE_G15
+    2300018: Green_Tiles_TILE_G16
+    2300020: Green_Tiles_TILE_G17
+    2300022: Green_Tiles_TILE_G18
+    2300024: Green_Tiles_TILE_G19
+    2300026: Green_Tiles_TILE_G20
+    2300028: Green_Tiles_TILE_G21
+    2300030: Green_Tiles_TILE_G22
+    2300032: Green_Tiles_TILE_G23
+    2300034: Green_Tiles_TILE_G24
+    3300000: Green_Tiles_TILE_G07
+    3300002: Green_Tiles_TILE_G08
+    3300004: Green_Tiles_TILE_G09
+    3300006: Green_Tiles_TILE_G10
+    3300008: Green_Tiles_TILE_G11
+    3300010: Green_Tiles_TILE_G12
+    3300012: Green_Tiles_TILE_G13
+    3300014: Green_Tiles_TILE_G14
+    3300016: Green_Tiles_TILE_G15
+    3300018: Green_Tiles_TILE_G16
+    3300020: Green_Tiles_TILE_G17
+    3300022: Green_Tiles_TILE_G18
+    3300024: Green_Tiles_TILE_G19
+    3300026: Green_Tiles_TILE_G20
+    3300028: Green_Tiles_TILE_G21
+    3300030: Green_Tiles_TILE_G22
+    3300032: Green_Tiles_TILE_G23
+    3300034: Green_Tiles_TILE_G24
+    4300000: Green_Tiles_TILE_G07
+    4300002: Green_Tiles_TILE_G08
+    4300004: Green_Tiles_TILE_G09
+    4300006: Green_Tiles_TILE_G10
+    4300008: Green_Tiles_TILE_G11
+    4300010: Green_Tiles_TILE_G12
+    4300012: Green_Tiles_TILE_G13
+    4300014: Green_Tiles_TILE_G14
+    4300016: Green_Tiles_TILE_G15
+    4300018: Green_Tiles_TILE_G16
+    4300020: Green_Tiles_TILE_G17
+    4300022: Green_Tiles_TILE_G18
+    4300024: Green_Tiles_TILE_G19
+    4300026: Green_Tiles_TILE_G20
+    4300028: Green_Tiles_TILE_G21
+    4300030: Green_Tiles_TILE_G22
+    4300032: Green_Tiles_TILE_G23
+    4300034: Green_Tiles_TILE_G24
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

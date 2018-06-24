@@ -64,6 +64,7 @@ namespace RC3.Unity.WFCDemo
             {
                 if (Input.GetKeyDown(KeyCode.A))
                 {
+                    Debug.Log("Analyze methods called.");
                     AnalyzeModel();
                     MarkWeakTiles();
                 }
@@ -114,7 +115,7 @@ namespace RC3.Unity.WFCDemo
         {
             AreaAnalyzer();
             CountAllDensities();
-            SunExposureAnalysis();
+            SunExposureAnalysis(); //TODO
             StructureAnalyzer();
         }
 
@@ -150,9 +151,10 @@ namespace RC3.Unity.WFCDemo
 
             foreach (var v in _verts)
             {
-                _totalArea += v.Area;
+                _totalArea += v.Tile.Area;
             }
 
+            Debug.Log("Total Volume " + _totalArea);
             return _totalArea;
         }
 

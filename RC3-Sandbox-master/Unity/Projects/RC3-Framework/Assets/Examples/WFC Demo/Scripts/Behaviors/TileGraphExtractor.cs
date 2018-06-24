@@ -79,11 +79,10 @@ namespace RC3.Unity.WFCDemo
                 for (int j = 0; j < n; j++)
                 {
                     var label = _map.GetLabel(j, tile);
+                    var neigh = _tileGraph.Graph.GetVertexNeighborOut(i, j);
 
                     if (_labelSet.Contains(label))
-                    {
-                        var neigh = _tileGraph.Graph.GetVertexNeighborOut(i, j);
-
+                    {                      
                         g1.AddEdge(i, j);
 
                         var lR = Instantiate(_lineRenderer, Vector3.zero, Quaternion.identity, _vertices[i].transform);

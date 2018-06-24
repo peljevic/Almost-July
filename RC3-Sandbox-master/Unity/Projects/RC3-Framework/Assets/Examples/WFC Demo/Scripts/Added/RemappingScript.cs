@@ -108,7 +108,7 @@ namespace RC3.Unity.WFCDemo
         {
             foreach (var v in _vertices)
             {
-                _totalArea += v.Area;
+                _totalArea += v.Tile.Area;
             }
         }
 

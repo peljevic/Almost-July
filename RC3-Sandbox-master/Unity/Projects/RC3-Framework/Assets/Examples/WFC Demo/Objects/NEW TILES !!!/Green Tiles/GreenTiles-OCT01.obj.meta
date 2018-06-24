@@ -1,0 +1,196 @@
+fileFormatVersion: 2
+guid: 4b096723f495aa0498bc2ba19ae1aac2
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: OCTAVIAN_TILES_G_07
+    100004: OCTAVIAN_TILES_G_08
+    100006: OCTAVIAN_TILES_G_09
+    100008: OCTAVIAN_TILES_G_10
+    100010: OCTAVIAN_TILES_G_11
+    100012: OCTAVIAN_TILES_G_12
+    100014: OCTAVIAN_TILES_G_13
+    100016: OCTAVIAN_TILES_G_14
+    100018: OCTAVIAN_TILES_G_15
+    100020: OCTAVIAN_TILES_G_16
+    100022: OCTAVIAN_TILES_G_17
+    100024: OCTAVIAN_TILES_G_18
+    100026: OCTAVIAN_TILES_G_19
+    100028: OCTAVIAN_TILES_G_20
+    100030: OCTAVIAN_TILES_G_21
+    100032: OCTAVIAN_TILES_G_22
+    100034: OCTAVIAN_TILES_G_23
+    100036: OCTAVIAN_TILES_G_24
+    400000: //RootNode
+    400002: OCTAVIAN_TILES_G_07
+    400004: OCTAVIAN_TILES_G_08
+    400006: OCTAVIAN_TILES_G_09
+    400008: OCTAVIAN_TILES_G_10
+    400010: OCTAVIAN_TILES_G_11
+    400012: OCTAVIAN_TILES_G_12
+    400014: OCTAVIAN_TILES_G_13
+    400016: OCTAVIAN_TILES_G_14
+    400018: OCTAVIAN_TILES_G_15
+    400020: OCTAVIAN_TILES_G_16
+    400022: OCTAVIAN_TILES_G_17
+    400024: OCTAVIAN_TILES_G_18
+    400026: OCTAVIAN_TILES_G_19
+    400028: OCTAVIAN_TILES_G_20
+    400030: OCTAVIAN_TILES_G_21
+    400032: OCTAVIAN_TILES_G_22
+    400034: OCTAVIAN_TILES_G_23
+    400036: OCTAVIAN_TILES_G_24
+    2100000: OCTAVIAN_TILES_G_07Mat
+    2100002: OCTAVIAN_TILES_G_08Mat
+    2100004: OCTAVIAN_TILES_G_09Mat
+    2100006: OCTAVIAN_TILES_G_10Mat
+    2100008: OCTAVIAN_TILES_G_11Mat
+    2100010: OCTAVIAN_TILES_G_12Mat
+    2100012: OCTAVIAN_TILES_G_13Mat
+    2100014: OCTAVIAN_TILES_G_14Mat
+    2100016: OCTAVIAN_TILES_G_15Mat
+    2100018: OCTAVIAN_TILES_G_16Mat
+    2100020: OCTAVIAN_TILES_G_17Mat
+    2100022: OCTAVIAN_TILES_G_18Mat
+    2100024: OCTAVIAN_TILES_G_19Mat
+    2100026: OCTAVIAN_TILES_G_20Mat
+    2100028: OCTAVIAN_TILES_G_21Mat
+    2100030: OCTAVIAN_TILES_G_22Mat
+    2100032: OCTAVIAN_TILES_G_23Mat
+    2100034: OCTAVIAN_TILES_G_24Mat
+    2300000: OCTAVIAN_TILES_G_07
+    2300002: OCTAVIAN_TILES_G_08
+    2300004: OCTAVIAN_TILES_G_09
+    2300006: OCTAVIAN_TILES_G_10
+    2300008: OCTAVIAN_TILES_G_11
+    2300010: OCTAVIAN_TILES_G_12
+    2300012: OCTAVIAN_TILES_G_13
+    2300014: OCTAVIAN_TILES_G_14
+    2300016: OCTAVIAN_TILES_G_15
+    2300018: OCTAVIAN_TILES_G_16
+    2300020: OCTAVIAN_TILES_G_17
+    2300022: OCTAVIAN_TILES_G_18
+    2300024: OCTAVIAN_TILES_G_19
+    2300026: OCTAVIAN_TILES_G_20
+    2300028: OCTAVIAN_TILES_G_21
+    2300030: OCTAVIAN_TILES_G_22
+    2300032: OCTAVIAN_TILES_G_23
+    2300034: OCTAVIAN_TILES_G_24
+    3300000: OCTAVIAN_TILES_G_07
+    3300002: OCTAVIAN_TILES_G_08
+    3300004: OCTAVIAN_TILES_G_09
+    3300006: OCTAVIAN_TILES_G_10
+    3300008: OCTAVIAN_TILES_G_11
+    3300010: OCTAVIAN_TILES_G_12
+    3300012: OCTAVIAN_TILES_G_13
+    3300014: OCTAVIAN_TILES_G_14
+    3300016: OCTAVIAN_TILES_G_15
+    3300018: OCTAVIAN_TILES_G_16
+    3300020: OCTAVIAN_TILES_G_17
+    3300022: OCTAVIAN_TILES_G_18
+    3300024: OCTAVIAN_TILES_G_19
+    3300026: OCTAVIAN_TILES_G_20
+    3300028: OCTAVIAN_TILES_G_21
+    3300030: OCTAVIAN_TILES_G_22
+    3300032: OCTAVIAN_TILES_G_23
+    3300034: OCTAVIAN_TILES_G_24
+    4300000: OCTAVIAN_TILES_G_07
+    4300002: OCTAVIAN_TILES_G_08
+    4300004: OCTAVIAN_TILES_G_09
+    4300006: OCTAVIAN_TILES_G_10
+    4300008: OCTAVIAN_TILES_G_11
+    4300010: OCTAVIAN_TILES_G_12
+    4300012: OCTAVIAN_TILES_G_13
+    4300014: OCTAVIAN_TILES_G_14
+    4300016: OCTAVIAN_TILES_G_15
+    4300018: OCTAVIAN_TILES_G_16
+    4300020: OCTAVIAN_TILES_G_17
+    4300022: OCTAVIAN_TILES_G_18
+    4300024: OCTAVIAN_TILES_G_19
+    4300026: OCTAVIAN_TILES_G_20
+    4300028: OCTAVIAN_TILES_G_21
+    4300030: OCTAVIAN_TILES_G_22
+    4300032: OCTAVIAN_TILES_G_23
+    4300034: OCTAVIAN_TILES_G_24
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
