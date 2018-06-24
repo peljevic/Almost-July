@@ -20,6 +20,7 @@ namespace RC3.Unity.WFCDemo
         private TileMap<string> _map;
         private HashSet<string> _labelSet;
         private List<VertexObject> _vertices;
+        private bool _swap = false;
 
 
         /// <summary>
@@ -38,6 +39,8 @@ namespace RC3.Unity.WFCDemo
 
         private void Update()
         {
+            if (Input.GetKeyDown(KeyCode.W)) SwapVisible();
+
             if (Input.GetKeyDown(KeyCode.Q))
             {
                 Extract();
@@ -62,6 +65,7 @@ namespace RC3.Unity.WFCDemo
 
                 if (_vertices[i].Tile.Mesh != null)
                 {
+                    _swap = true;
                     _vertices[i].gameObject.GetComponent<MeshRenderer>().enabled = false;
                     Transform pos = _vertices[i].transform;
                     Instantiate(_vertexObject, pos);
@@ -90,6 +94,14 @@ namespace RC3.Unity.WFCDemo
                 }
             }
             return g1;
+        }
+
+        private void SwapVisible()
+        {
+            foreach (var v in _vertices)
+            {
+                v.gameObject.GetComponent<MeshRenderer>().enabled = !_swap;
+            }
         }
     }
 }

@@ -35,9 +35,20 @@ namespace RC3.Unity.WFCDemo
 
         private TileModelInitializer _initializer;
 
+        /// <summary>
+        /// For the agent to check if the model was built
+        /// </summary>
         public CollapseStatus Status
         {
             get { return _status; }
+        }
+        
+        /// <summary>
+        /// For agent to access and restart the Tile Model
+        /// </summary>
+        public void ReRunModel()
+        {
+            ResetModel();
         }
 
         /// <summary>
@@ -52,7 +63,7 @@ namespace RC3.Unity.WFCDemo
         {
             get { return _tileSet; }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -111,6 +122,8 @@ namespace RC3.Unity.WFCDemo
         /// </summary>
         void Update()
         {
+            if (Input.GetKeyDown(KeyCode.Space)) RotateView();
+
             if (Input.GetKeyDown(KeyCode.R))
                 ResetModel();
             
@@ -134,7 +147,6 @@ namespace RC3.Unity.WFCDemo
             }
         }
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -148,6 +160,19 @@ namespace RC3.Unity.WFCDemo
 
             _initializer?.Initialize(_model);
         }
+
+        private void RotateView()
+        {
+            if (gameObject.GetComponent<ModelDisplay>() == null)
+            {
+                gameObject.AddComponent<ModelDisplay>();
+            }
+            else
+            {
+                Destroy(gameObject.GetComponent<ModelDisplay>());
+            }
+        }
+
     }
 
 }

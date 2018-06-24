@@ -60,21 +60,35 @@ namespace RC3.Unity.WFCDemo
 
         private void Update()
         {
-            if(_analysisOn)
+            if(_analysisOn)    // if (_status == CollapseStatus.Complete) AnalyzeModel(); 
             {
-                 if (Input.GetKeyDown(KeyCode.A)) AnalyzeModel();
-                // if (_status == CollapseStatus.Complete) AnalyzeModel(); 
+                if (Input.GetKeyDown(KeyCode.A))
+                {
+                    AnalyzeModel();
+                    MarkWeakTiles();
+                }
             }
-
-
+            
         }
 
+        private void MarkWeakTiles()
+        {
+            foreach (var weak in _weakTiles)
+                weak.Renderer.sharedMaterial.color = Color.red;
+        }
+
+        /// <summary>
+        /// Evaluations for the agent to collect
+        /// </summary>
         public IEnumerable<VertexObject> WeakTiles
         {
             get { return _weakTiles; }
 
         }
 
+        /// <summary>
+        /// Evaluations for the agent to collect
+        /// </summary>
         public IEnumerable<VertexObject> StableTiles
         {
             get { return _stableTiles; }

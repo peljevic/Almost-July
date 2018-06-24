@@ -16,7 +16,6 @@ namespace RC3.Unity.WFCDemo
         private MeshRenderer _renderer;
         private Vector3 _scale;
 
-        private Color _color;
         private Rigidbody _rigidbody;
         private MeshCollider _collider;
 

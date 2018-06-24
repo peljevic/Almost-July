@@ -239,7 +239,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
+  m_BackGroundColor: {r: 0.66180134, g: 0.8301887, b: 0.7965997, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -370,7 +370,7 @@ Prefab:
     - target: {fileID: 114987411705247548, guid: c71f836d40eec9748a1dd2d3ac5d4e14,
         type: 2}
       propertyPath: _countY
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114987411705247548, guid: c71f836d40eec9748a1dd2d3ac5d4e14,
         type: 2}
@@ -633,26 +633,6 @@ Prefab:
         type: 2}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114472310782029564, guid: 183a510ef691b6e47958a8d0bd6eba8f,
-        type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114472310782029564, guid: 183a510ef691b6e47958a8d0bd6eba8f,
-        type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114752337583369258, guid: 183a510ef691b6e47958a8d0bd6eba8f,
-        type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114117596896244276, guid: 183a510ef691b6e47958a8d0bd6eba8f,
-        type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 183a510ef691b6e47958a8d0bd6eba8f, type: 2}
