@@ -16,6 +16,14 @@ namespace RC3.Unity.WFCDemo
         private MeshRenderer _renderer;
         private Vector3 _scale;
 
+        private Color _color;
+        private Rigidbody _rigidbody;
+        private MeshCollider _collider;
+
+        private float _height;
+        private int _areaValue = 0;
+        private float _sunExposureValue;
+        private int _suncollisions = 0;
 
         /// <summary>
         /// 
@@ -41,6 +49,12 @@ namespace RC3.Unity.WFCDemo
             _renderer = GetComponent<MeshRenderer>();
             _scale = transform.localScale;
 
+            //added
+            _rigidbody = GetComponent<Rigidbody>();
+            _height = GetComponent<Transform>().position.y;
+            _collider = GetComponent<MeshCollider>();
+            _collider.enabled = false;
+
             OnSetTile();
         }
 
@@ -63,10 +77,58 @@ namespace RC3.Unity.WFCDemo
 
             _filter.sharedMesh = _tile.Mesh;
             _renderer.sharedMaterial = _tile.Material;
+            _rigidbody.drag = _tile.Drag;
+            _areaValue = _tile.Area;
+            _tile.CountThisType++;
+
+            var colMesh = _tile.Mesh;
+            if (_filter.sharedMesh != null)
+            {
+                _collider.sharedMesh = _tile.Mesh;
+                _collider.enabled = false;
+            }
+
             _child.SetActive(false);
         }
 
-        
+        public int SunCollisions
+        {
+            get { return _suncollisions; }
+            set { _suncollisions = value; }
+        }
+
+        public float Height
+        {
+            set { _height = value; }
+            get { return _height; }
+        }
+
+        public int Area
+        {
+            set { _areaValue = value; }
+            get { return _areaValue; }
+        }
+
+        public Rigidbody Body
+        {
+            get { return _rigidbody; }
+        }
+
+        public float Velocity
+        {
+            get { return _rigidbody.velocity.magnitude; }
+        }
+
+        public MeshCollider Collider
+        {
+            get { return _collider; }
+        }
+
+        public MeshRenderer Renderer
+        {
+            get { return _renderer; }
+        }
+
         /// <summary>
         /// 
         /// </summary>

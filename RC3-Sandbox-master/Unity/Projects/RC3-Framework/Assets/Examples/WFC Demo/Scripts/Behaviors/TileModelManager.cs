@@ -35,6 +35,10 @@ namespace RC3.Unity.WFCDemo
 
         private TileModelInitializer _initializer;
 
+        public CollapseStatus Status
+        {
+            get { return _status; }
+        }
 
         /// <summary>
         /// 
@@ -44,7 +48,11 @@ namespace RC3.Unity.WFCDemo
             get { return _model; }
         }
 
-
+        public TileSet TileSet
+        {
+            get { return _tileSet; }
+        }
+        
         /// <summary>
         /// 
         /// </summary>

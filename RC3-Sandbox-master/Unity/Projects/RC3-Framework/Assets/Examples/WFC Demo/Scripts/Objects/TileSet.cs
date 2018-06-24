@@ -16,8 +16,7 @@ namespace RC3.Unity.WFCDemo
     public abstract class TileSet : ScriptableObject
     {
         [SerializeField, HideInInspector] private Tile[] _tiles;
-
-        
+        private int[] _counts;
         /// <summary>
         /// 
         /// </summary>
@@ -28,7 +27,6 @@ namespace RC3.Unity.WFCDemo
             get { return _tiles[i]; }
         }
 
-
         /// <summary>
         /// 
         /// </summary>
@@ -37,10 +35,23 @@ namespace RC3.Unity.WFCDemo
             get { return _tiles.Length; }
         }
 
-        
+
+        public void CounterByType(int index)
+        {
+            if (_counts == null) _counts = new int[_tiles.Length];
+
+            _counts[index]++;
+        }
+
+        public int[] TileTypeCounter
+        {
+            get { return _counts; }
+        }
+    
         /// <summary>
         /// 
         /// </summary>
+        /// <returns></returns>
         public TileMap<string> CreateMap()
         {
             var map = CreateMap(Count);

@@ -16,6 +16,7 @@ namespace RC3.Unity.WFCDemo
     [CreateAssetMenu(menuName = "RC3/WFC Demo/TileSets/Rectangular")]
     public class RectangularTileSet : TileSet
     {
+        
         /// <summary>
         /// 
         /// </summary>

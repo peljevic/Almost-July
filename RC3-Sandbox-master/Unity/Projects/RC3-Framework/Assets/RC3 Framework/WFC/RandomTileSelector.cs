@@ -20,12 +20,10 @@ namespace RC3.WFC
         /// 
         /// </summary>
         /// <param name="model"></param>
-        public RandomTileSelector(TileModel model, int seed)
-            : base(model)
+        public RandomTileSelector(int seed)
         {
             _random = new Random(seed);
         }
-
 
         /// <summary>
         /// 
@@ -34,8 +32,9 @@ namespace RC3.WFC
         /// <returns></returns>
         public override int Select(int position)
         {
-            var d = _model.GetDomain(position);
+            var d = Model.GetDomain(position);
             return d.ElementAt(_random.Next(d.Count));
         }
+
     }
 }

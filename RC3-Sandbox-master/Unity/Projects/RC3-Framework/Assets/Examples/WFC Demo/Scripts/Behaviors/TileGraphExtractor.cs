@@ -1,10 +1,4 @@
 ﻿
-/*
- * Notes
- * 
- * Tiles must be scaled by -1 in the x if modeled in a right hand coordinate system.
- */
-
 using System.Collections.Generic;
 using UnityEngine;
 using RC3.Graphs;
@@ -19,10 +13,13 @@ namespace RC3.Unity.WFCDemo
     {
         [SerializeField] private SharedDigraph _tileGraph;
         [SerializeField] private string[] _validLabels;
+        [SerializeField] private GameObject _vertexObject;
+        [SerializeField] private GameObject _lineRenderer;
 
         private TileModel _model;
         private TileMap<string> _map;
         private HashSet<string> _labelSet;
+        private List<VertexObject> _vertices;
 
 
         /// <summary>
@@ -30,6 +27,8 @@ namespace RC3.Unity.WFCDemo
         /// </summary>
         private void Initialize()
         {
+            _vertices = _tileGraph.VertexObjects;
+
             var manager = GetComponent<TileModelManager>();
 
             _model = manager.TileModel;
@@ -37,6 +36,14 @@ namespace RC3.Unity.WFCDemo
             _labelSet = new HashSet<string>(_validLabels);
         }
 
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Q))
+            {
+                Extract();
+                Debug.Log("Function Called");
+            }
+        }
 
         /// <summary>
         /// 
@@ -51,6 +58,17 @@ namespace RC3.Unity.WFCDemo
 
             for (int i = 0; i < g0.VertexCount; i++)
             {
+                g1.AddVertex();
+
+                if (_vertices[i].Tile.Mesh != null)
+                {
+                    _vertices[i].gameObject.GetComponent<MeshRenderer>().enabled = false;
+                    Transform pos = _vertices[i].transform;
+                    Instantiate(_vertexObject, pos);
+                }
+
+                Debug.Log("Works!");
+
                 var tile = _model.GetAssigned(i);
                 var n = _map.TileDegree;
 
@@ -59,12 +77,19 @@ namespace RC3.Unity.WFCDemo
                     var label = _map.GetLabel(j, tile);
 
                     if (_labelSet.Contains(label))
+                    {
+                        var neigh = _tileGraph.Graph.GetVertexNeighborOut(i, j);
+
                         g1.AddEdge(i, j);
+
+                        var lR = Instantiate(_lineRenderer, Vector3.zero, Quaternion.identity, _vertices[i].transform);
+
+                        lR.GetComponent<LineRenderer>().SetPosition(0, _vertices[i].gameObject.transform.position);
+                        lR.GetComponent<LineRenderer>().SetPosition(1, _vertices[neigh].gameObject.transform.position);
+                    }
                 }
             }
-
-            return g0;
+            return g1;
         }
     }
-
 }

@@ -120,7 +120,7 @@ namespace RC3.WFC
             _remaining = new HashSet<int>(Enumerable.Range(0, positionCount));
             _queue = new QueueSet<int>();
 
-            _selector = new RandomTileSelector(this, seed);
+            Selector = new RandomTileSelector(seed);
             _buffer = new List<int>(tileCount);
         }
 
@@ -155,6 +155,7 @@ namespace RC3.WFC
                     throw new ArgumentNullException();
 
                 _selector = value;
+                _selector.Model = this;
             }
         }
 

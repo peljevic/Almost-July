@@ -1,8 +1,4 @@
 ﻿
-/*
- * Notes
- */
-
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,7 +11,7 @@ namespace RC3.Unity.WFCDemo
     /// <summary>
     /// 
     /// </summary>
-    public class TruncatedOctahedralGraphCreator : MonoBehaviour
+    public class TruncatedOctahedralGraphCreator : InitializableBehavior
     {
         [SerializeField] SharedDigraph _tileGraph;
         [SerializeField] VertexObject _vertexPrefab;
@@ -23,11 +19,26 @@ namespace RC3.Unity.WFCDemo
         [SerializeField] private int _countY = 10;
         [SerializeField] private int _countZ = 10;
 
+        public int CountX
+        {
+            set { _countX = value; }
+        }
+
+        public int CountY
+        {
+            set { _countY = value; }
+        }
+
+        public int CountZ
+        {
+            set { _countZ = value; }
+        }
+
 
         /// <summary>
         /// 
         /// </summary>
-        void Awake()
+        public override void Initialize()
         {
             var graph = Digraph.Factory.CreateTruncatedOctahedronGrid(_countX, _countY, _countZ, true);
 
@@ -37,7 +48,7 @@ namespace RC3.Unity.WFCDemo
             transform.position = new Vector3(-_countX, -_countY, -_countZ); // center
         }
 
-
+    
         /// <summary>
         /// 
         /// </summary>
@@ -46,7 +57,7 @@ namespace RC3.Unity.WFCDemo
         {
             int count = 0;
 
-            foreach(var p in GetVertexPositions())
+            foreach (var p in GetVertexPositions())
             {
                 var vobj = Instantiate(_vertexPrefab, transform);
                 vobj.transform.localPosition = p * 2.0f;
@@ -54,9 +65,7 @@ namespace RC3.Unity.WFCDemo
                 yield return vobj;
             }
         }
-
-
-        /// <summary>
+            
         /// 
         /// </summary>
         /// <returns></returns>
@@ -70,7 +79,7 @@ namespace RC3.Unity.WFCDemo
                         yield return new Vector3(x, y, z);
                 }
             }
-            
+
             for (int z = 0; z < _countZ; z++)
             {
                 for (int y = 0; y < _countY; y++)
@@ -80,30 +89,28 @@ namespace RC3.Unity.WFCDemo
                 }
             }
         }
-        
-
-        /*
-        /// <summary>
-        /// 
-        /// </summary>
-        private void Update()
-        {
-            var graph = _tileGraph.Graph;
-            var verts = _tileGraph.VertexObjects;
-
-            for(int i= 0; i < graph.VertexCount; i++)
-            {
-                var p0 = verts[i].transform.position;
-
-                foreach(var j in graph.GetVertexNeighborsOut(i))
-                {
-                    if (j <= i) continue;
-                    
-                    var p1 = verts[j].transform.position;
-                    Debug.DrawLine(p0,p1);
-                }
-            }
-        }
-        */
     }
 }
+/*
+/// <summary>
+/// 
+/// </summary>
+private void Update()
+{
+    var graph = _tileGraph.Graph;
+    var verts = _tileGraph.VertexObjects;
+
+    for(int i= 0; i < graph.VertexCount; i++)
+    {
+        var p0 = verts[i].transform.position;
+
+        foreach(var j in graph.GetVertexNeighborsOut(i))
+        {
+            if (j <= i) continue;
+
+            var p1 = verts[j].transform.position;
+            Debug.DrawLine(p0,p1);
+        }
+    }
+}
+*/

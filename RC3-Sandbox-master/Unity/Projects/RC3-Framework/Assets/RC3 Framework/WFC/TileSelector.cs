@@ -15,20 +15,15 @@ namespace RC3.WFC
     public abstract class TileSelector
     {
         protected TileModel _model;
-
-
+        
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="model"></param>
-        public TileSelector(TileModel model)
+        public TileModel Model
         {
-            if (model == null)
-                throw new ArgumentNullException();
-
-            _model = model;
+            get { return _model; }
+            set { _model = value; }
         }
-
 
         /// <summary>
         /// 

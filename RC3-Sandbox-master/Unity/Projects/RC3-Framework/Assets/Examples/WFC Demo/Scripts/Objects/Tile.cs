@@ -22,6 +22,41 @@ namespace RC3.Unity.WFCDemo
         [SerializeField] private Material _material;
         [SerializeField, HideInInspector] private string[] _labels;
 
+        //added
+        [SerializeField] private int _index;
+        [SerializeField] private float _drag;
+        [SerializeField] private int _weight = 0;
+        [SerializeField] private int _area = 0;
+
+        private int _thisTileCount = 0;
+
+        public float Drag
+        {
+            get { return _drag; }
+        }
+
+        public int Area
+        {
+            set { _area = value; }
+            get { return _area; }
+        }
+
+        public int Weight
+        {
+            get { return _weight; }
+            set { _weight = value; }
+        }
+
+        public int Index
+        {
+            get { return _index; }
+        }
+
+        public int CountThisType
+        {
+            set { _thisTileCount = value; }
+            get { return _thisTileCount; }
+        }
 
         /// <summary>
         /// 

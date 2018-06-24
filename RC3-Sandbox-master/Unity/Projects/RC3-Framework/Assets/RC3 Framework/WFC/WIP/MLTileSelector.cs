@@ -8,10 +8,10 @@ using System.Linq;
 using System.Collections.Generic;
 
 using SpatialSlur.Core;
-
+using RC3.WFC;
 using System;
 
-namespace RC3.WFC
+namespace RC3.Unity.WFCDemo
 {
     /// <summary>
     /// 
@@ -26,7 +26,7 @@ namespace RC3.WFC
         /// 
         /// </summary>
         /// <param name="model"></param>
-        public MLTileSelector(TileModel model, MLSelectorAgent agent, int seed) : base(model)
+        public MLTileSelector(TileSet tileSet, MLSelectorAgent agent, int seed)
         {
             if (agent == null)
                 throw new ArgumentNullException();
@@ -58,7 +58,7 @@ namespace RC3.WFC
         {
             _selector.SetWeights(_agent.GetWeights(position));
 
-            var d = _model.GetDomain(position);
+            var d = Model.GetDomain(position);
             return d.ElementAt(_selector.Next());
         }
     }
