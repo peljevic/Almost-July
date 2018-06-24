@@ -69,12 +69,12 @@ namespace RC3.Unity.WFCDemo
                     Debug.Log("Analyze methods called.");
                     AnalyzeModel();
                     MarkWeakTiles();
-                   
+                    ResetStructureAnalysisChanges();
 
                 }
                 if (Input.GetKeyDown(KeyCode.S))
                 {
-                    ResetStructureAnalysisChanges();
+                    
                 }
             }
             
