@@ -32,7 +32,21 @@ namespace RC3.Unity.WFCDemo
         private void Awake()
         {
             _weights = GetTileWeights().ToArray();
+            ValidateWeights();
+
             _selector = new ProbabilitySelector(_weights, new System.Random(_seed));
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void ValidateWeights()
+        {
+            var min = _weights.Min();
+
+            if (min <= 0.0)
+                throw new ArgumentOutOfRangeException("Weights must be positive and non-zero!");
         }
         
 
@@ -57,7 +71,23 @@ namespace RC3.Unity.WFCDemo
             var d = model.GetDomain(position);
             _selector.SetWeights(GetModifiedWeights(d)); // update the weights in the selector
 
-            return _selector.Next();
+            var next = _selector.Next();
+
+            Debug.Log("next tile is " + _selector.Next().ToString());
+
+            if (next == null)
+            {
+                Debug.Log("Next tile doesn't exist");
+                return 0;
+            }
+
+            if (next >= _tileSet.Count)
+            {
+                Debug.Log("Next tile out of range");
+                return 0;
+            }
+
+            else return next;
         }
 
 
@@ -68,7 +98,7 @@ namespace RC3.Unity.WFCDemo
         /// <returns></returns>
         private IEnumerable<double> GetModifiedWeights(ReadOnlySet<int> domain)
         {
-            for(int i = 0; i <_weights.Length; i++)
+            for (int i = 0; i < _weights.Length; i++)
                 yield return domain.Contains(i) ? _weights[i] : 0.0;
         }
     }

@@ -298,7 +298,7 @@ namespace RC3.WFC
         private void Validate(int tile)
         {
             if ((uint)tile >= (uint)_tileCount)
-                throw new IndexOutOfRangeException("The given tile is not valid.");
+                    throw new IndexOutOfRangeException("The given tile is not valid.");
         }
 
 

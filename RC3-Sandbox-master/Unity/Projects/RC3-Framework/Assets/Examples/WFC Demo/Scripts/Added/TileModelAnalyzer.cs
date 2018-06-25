@@ -20,6 +20,8 @@ namespace RC3.Unity.WFCDemo
         [SerializeField] private float _areaTolerance;
         [SerializeField] public float _allowedDisplacement = 0;
 
+        Vector3[] _positions;
+
         List<VertexObject> _verts;
         private Digraph _graph;
         private CollapseStatus _status;
@@ -67,12 +69,12 @@ namespace RC3.Unity.WFCDemo
                     Debug.Log("Analyze methods called.");
                     AnalyzeModel();
                     MarkWeakTiles();
-                    ResetStructureAnalysisChanges();
+                   
 
                 }
                 if (Input.GetKeyDown(KeyCode.S))
                 {
-                  
+                    ResetStructureAnalysisChanges();
                 }
             }
             
@@ -131,6 +133,7 @@ namespace RC3.Unity.WFCDemo
 
         public void AnalyzeModel()
         {
+            PositionSaver();
             AreaAnalyzer();
             CountAllDensities();
             // SunExposureAnalysis(); //TODO fix
@@ -232,7 +235,7 @@ namespace RC3.Unity.WFCDemo
         {
             RemoveGravity();
             RemoveJoints();
-            //ResetPositions();
+            RestoreInitialPositions();
         }
 
         private float MinDistance()
@@ -331,7 +334,24 @@ namespace RC3.Unity.WFCDemo
             }
         }
 
-      
+        private void PositionSaver()
+        {
+            _positions = new Vector3[_graph.VertexCount];
+            
+           for(int i=0; i<_graph.VertexCount; i++)
+            {
+                _positions[i] = _verts[i].transform.position;
+            }
+        }
+
+        private void RestoreInitialPositions()
+        {
+            for (int i = 0; i < _graph.VertexCount; i++)
+            {
+                _verts[i].transform.position = _positions[i];
+            }
+        }
+
         private float MaxVelocity(VertexObject vertex)
         {
             var _XmeshDisplacement = vertex.GetComponent<Rigidbody>().velocity.x;

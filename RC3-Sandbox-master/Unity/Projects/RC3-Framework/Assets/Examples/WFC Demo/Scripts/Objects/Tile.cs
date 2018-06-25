@@ -25,7 +25,7 @@ namespace RC3.Unity.WFCDemo
         //added
         [SerializeField] private int _index;
         [SerializeField] private float _drag;
-        [SerializeField] private int _weight = 0;
+        [SerializeField] private double _weight = 1.0;
         [SerializeField] private int _area = 0;
 
         private int _thisTileCount = 0;
@@ -41,7 +41,7 @@ namespace RC3.Unity.WFCDemo
             get { return _area; }
         }
 
-        public int Weight
+        public double Weight
         {
             get { return _weight; }
             set { _weight = value; }

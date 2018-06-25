@@ -30,5 +30,5 @@ MonoBehaviour:
   - 0
   _index: 0
   _drag: 0
-  _weight: 0
+  _weight: 0.2
   _area: 3

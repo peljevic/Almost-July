@@ -642,6 +642,7 @@ GameObject:
   - component: {fileID: 1467768199}
   - component: {fileID: 1467768201}
   - component: {fileID: 1467768200}
+  - component: {fileID: 1467768207}
   - component: {fileID: 1467768198}
   - component: {fileID: 1467768204}
   - component: {fileID: 1467768202}
@@ -668,7 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _tileGraph: {fileID: 11400000, guid: 1444a06be789f354086b14d79e1bc128, type: 2}
-  _tileSet: {fileID: 11400000, guid: a02e50ccb81041a408d1c502cc7aa7ee, type: 2}
+  _tileSet: {fileID: 11400000, guid: e0288e16da717804cb497678f66828f0, type: 2}
   _substeps: 10
   _seed: 1
 --- !u!4 &1467768199
@@ -700,7 +701,7 @@ MonoBehaviour:
   _tileGraph: {fileID: 11400000, guid: 1444a06be789f354086b14d79e1bc128, type: 2}
   _vertexPrefab: {fileID: 114822396280733394, guid: 8bdf91cecb96f194487929d9340ffd9d,
     type: 2}
-  _countX: 10
+  _countX: 5
   _countY: 5
   _countZ: 5
 --- !u!114 &1467768201
@@ -761,7 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ae311de8f98dc4a9cd2ea020d86f8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _tileSet: {fileID: 11400000, guid: a02e50ccb81041a408d1c502cc7aa7ee, type: 2}
+  _tileSet: {fileID: 11400000, guid: e0288e16da717804cb497678f66828f0, type: 2}
   _seed: 0
 --- !u!114 &1467768205
 MonoBehaviour:
@@ -788,13 +789,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _analysisOn: 1
   _grid: {fileID: 11400000, guid: 1444a06be789f354086b14d79e1bc128, type: 2}
-  _tileSet: {fileID: 11400000, guid: a02e50ccb81041a408d1c502cc7aa7ee, type: 2}
+  _tileSet: {fileID: 11400000, guid: e0288e16da717804cb497678f66828f0, type: 2}
   _neededArea: 30
   _maxDensity: 0
   _areaTolerance: 0
   _allowedDisplacement: 0
   MaxForce: 1000
   MaxTorque: 1000
+--- !u!114 &1467768207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1467768197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: beeff677212a0264ea5927f3a66e9dbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tileGraph: {fileID: 11400000, guid: 1444a06be789f354086b14d79e1bc128, type: 2}
+  _tiles: 00000000
 --- !u!1 &1630399955
 GameObject:
   m_ObjectHideFlags: 0

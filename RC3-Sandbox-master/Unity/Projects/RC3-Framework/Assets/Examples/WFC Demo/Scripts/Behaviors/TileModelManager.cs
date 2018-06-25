@@ -86,7 +86,7 @@ namespace RC3.Unity.WFCDemo
 
             _model.DomainChanged += OnDomainChanged;
             _status = CollapseStatus.Incomplete;
-
+            
             // assign tile selector if available
             var selector = GetComponent<ITileSelector>();
             if (selector != null)

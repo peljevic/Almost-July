@@ -49,11 +49,49 @@ namespace RC3.Unity.WFCDemo
             }
         }
 
+
         /// <summary>
         /// 
         /// </summary>
         public Digraph Extract()
         {
+            // https://en.wikipedia.org/wiki/Single_responsibility_principle
+
+            if (_model == null)
+                Initialize();
+
+            var g0 = _tileGraph.Graph;
+            var g1 = new Digraph(g0.VertexCount);
+            var n = _map.TileDegree;
+
+            for (int v0 = 0; v0 < g0.VertexCount; v0++)
+            {
+                g1.AddVertex();
+                var tile = _model.GetAssigned(v0);
+
+                for (int i = 0; i < n; i++)
+                {
+                    var label = _map.GetLabel(i, tile);
+
+                    if (_labelSet.Contains(label))
+                    {
+                        var v1 = _tileGraph.Graph.GetVertexNeighborOut(v0, i);
+                        if (v0 != v1) g1.AddEdge(v0, v1);
+                    }
+                }
+            }
+
+            return g1;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Digraph Extract2()
+        {
+            // https://en.wikipedia.org/wiki/Single_responsibility_principle
+
             if (_model == null)
                 Initialize();
 
@@ -101,6 +139,8 @@ namespace RC3.Unity.WFCDemo
             }
             return g1;
         }
+
+
 
         private void SwapVisible()
         {
