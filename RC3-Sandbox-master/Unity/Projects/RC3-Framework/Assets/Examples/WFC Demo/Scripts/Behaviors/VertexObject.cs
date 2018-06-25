@@ -16,6 +16,9 @@ namespace RC3.Unity.WFCDemo
         private MeshRenderer _renderer;
         private Vector3 _scale;
 
+        private TileSet _tileSet;
+        private TileTypeCounter _tileTypeCounter;
+
         private Rigidbody _rigidbody;
         private MeshCollider _collider;
 
@@ -54,6 +57,8 @@ namespace RC3.Unity.WFCDemo
             _collider = GetComponent<MeshCollider>();
             _collider.enabled = false;
 
+            _tileTypeCounter = GetComponent<TileTypeCounter>();
+
             OnSetTile();
         }
 
@@ -65,7 +70,7 @@ namespace RC3.Unity.WFCDemo
         private void OnSetTile()
         {
             transform.localScale = _scale;
-
+            
             if (_tile == null)
             {
                 _filter.sharedMesh = null;

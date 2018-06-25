@@ -22,13 +22,18 @@ namespace RC3.Unity.WFCDemo
 
             _tileSet = GetComponent<TileModelManager>().TileSet;
             _counts = new int[_tileSet.Count];
-
-            for (int i = 0; i < _tileSet.Count; i++)
-            {
-                _counts[i] = _tileSet[i].CountThisType;
-            }
+            
         }
 
+        public void Count(int i)
+        {
+            _counts[i]++;
+            Debug.Log("Count type " + i + " is " + _counts[i]);
+        }
         
     }
 }
+            //for (int i = 0; i < _tileSet.Count; i++)
+            //{
+            //    _counts[i] = _tileSet[i].CountThisType;
+            //}
