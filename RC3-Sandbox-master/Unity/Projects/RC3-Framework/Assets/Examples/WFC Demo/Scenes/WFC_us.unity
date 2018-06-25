@@ -239,7 +239,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 1, g: 0.8038475, b: 0.7216981, a: 1}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -663,6 +663,12 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: e0288e16da717804cb497678f66828f0,
         type: 2}
+    - target: {fileID: 114279966979545904, guid: 183a510ef691b6e47958a8d0bd6eba8f,
+        type: 2}
+      propertyPath: m_Text
+      value: "\n  C: Count tile types\n  Q: Draw graph lines \n  A: Tile Model Analysis\n
+        \ L: Sun Exposure\n  S: Screen capture\n  Space: Rotate Model\n  ---"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 183a510ef691b6e47958a8d0bd6eba8f, type: 2}
   m_IsPrefabParent: 0
