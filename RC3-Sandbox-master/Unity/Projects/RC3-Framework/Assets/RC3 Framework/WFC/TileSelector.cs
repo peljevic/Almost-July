@@ -31,5 +31,10 @@ namespace RC3.WFC
         /// <param name="position"></param>
         /// <returns></returns>
         public abstract int Select(int position);
+
+        public void Initialize(TileSelector selector)
+        {
+           
+        }
     }
 }

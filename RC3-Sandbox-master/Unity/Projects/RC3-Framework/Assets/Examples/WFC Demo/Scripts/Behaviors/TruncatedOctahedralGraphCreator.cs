@@ -48,7 +48,7 @@ namespace RC3.Unity.WFCDemo
             _tileGraph.Initialize(graph);
             _tileGraph.VertexObjects.AddRange(CreateVertexObjects());
 
-          //  transform.position = new Vector3(-_countX, -_countY, -_countZ); // center
+            transform.position = new Vector3(-_countX, -_countY, -_countZ); // center
         }
 
     

@@ -25,6 +25,10 @@ namespace RC3.Unity.WFCDemo
         [SerializeField] private TileSet _tileSet;
         [SerializeField] private int _substeps = 10;
         [SerializeField] private int _seed = 1;
+        [SerializeField] private SharedTileSelector _selector;
+
+        [SerializeField] private TileSelector _tileSelectorObj;
+        [SerializeField] private GameObject _selectorHolder;
 
         private Digraph _graph;
         private List<VertexObject> _verts;
@@ -86,6 +90,9 @@ namespace RC3.Unity.WFCDemo
 
             _model.DomainChanged += OnDomainChanged;
             _status = CollapseStatus.Incomplete;
+
+            if (_selector != null)
+                _model.Selector = _tileSelectorObj;
 
             _initializer = GetComponent<TileModelInitializer>();
             _initializer?.Initialize(_model);
