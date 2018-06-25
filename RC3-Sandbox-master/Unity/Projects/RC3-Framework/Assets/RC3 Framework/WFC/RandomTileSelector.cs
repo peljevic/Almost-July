@@ -11,7 +11,7 @@ namespace RC3.WFC
     /// <summary>
     /// 
     /// </summary>
-    public class RandomTileSelector : TileSelector
+    public class RandomTileSelector : ITileSelector
     {
         private Random _random;
 
@@ -25,16 +25,16 @@ namespace RC3.WFC
             _random = new Random(seed);
         }
 
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="position"></param>
         /// <returns></returns>
-        public override int Select(int position)
+        public int Select(TileModel model, int position)
         {
-            var d = Model.GetDomain(position);
+            var d = model.GetDomain(position);
             return d.ElementAt(_random.Next(d.Count));
         }
-
     }
 }

@@ -14,8 +14,6 @@ using RC3.WFC;
 
 namespace RC3.Unity.WFCDemo
 {
-
-
     /// <summary>
     /// 
     /// </summary>
@@ -25,10 +23,6 @@ namespace RC3.Unity.WFCDemo
         [SerializeField] private TileSet _tileSet;
         [SerializeField] private int _substeps = 10;
         [SerializeField] private int _seed = 1;
-        [SerializeField] private SharedTileSelector _selector;
-
-        [SerializeField] private TileSelector _tileSelectorObj;
-        [SerializeField] private GameObject _selectorHolder;
 
         private Digraph _graph;
         private List<VertexObject> _verts;
@@ -39,6 +33,7 @@ namespace RC3.Unity.WFCDemo
 
         private TileModelInitializer _initializer;
 
+
         /// <summary>
         /// For the agent to check if the model was built
         /// </summary>
@@ -47,6 +42,7 @@ namespace RC3.Unity.WFCDemo
             get { return _status; }
         }
         
+
         /// <summary>
         /// For agent to access and restart the Tile Model
         /// </summary>
@@ -91,9 +87,12 @@ namespace RC3.Unity.WFCDemo
             _model.DomainChanged += OnDomainChanged;
             _status = CollapseStatus.Incomplete;
 
-            if (_selector != null)
-                _model.Selector = _tileSelectorObj;
+            // assign tile selector if available
+            var selector = GetComponent<ITileSelector>();
+            if (selector != null)
+                _model.Selector = selector;
 
+            // initialize model
             _initializer = GetComponent<TileModelInitializer>();
             _initializer?.Initialize(_model);
         }

@@ -21,6 +21,7 @@ namespace RC3.Unity.WFCDemo
         private HashSet<string> _labelSet;
         private List<VertexObject> _vertices;
         private bool _swap = false;
+        private int _edgeCount=0;
 
 
         /// <summary>
@@ -91,6 +92,9 @@ namespace RC3.Unity.WFCDemo
 
                             lR.GetComponent<LineRenderer>().SetPosition(0, _vertices[i].gameObject.transform.position);
                             lR.GetComponent<LineRenderer>().SetPosition(1, _vertices[neigh].gameObject.transform.position);
+
+                            _edgeCount++;
+                            Debug.Log("Edge count : " + _edgeCount.ToString());
                         }
                     }
                 }

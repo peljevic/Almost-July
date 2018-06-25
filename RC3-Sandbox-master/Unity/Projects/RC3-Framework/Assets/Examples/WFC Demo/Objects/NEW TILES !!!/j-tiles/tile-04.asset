@@ -11,9 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e6927d02f5794847a99048cbe7cbba8, type: 3}
   m_Name: tile-04
   m_EditorClassIdentifier: 
-  _index: 0
   _mesh: {fileID: 4300006, guid: 76f66be6736e25741bed280c49291224, type: 3}
-  _material: {fileID: 2100000, guid: a4a7fd94aeab50846938774a20fdde1d, type: 3}
+  _material: {fileID: 2100000, guid: 3c97b3aef7878904eb74bbbeb1b08814, type: 2}
   _labels:
   - a
   - 0
@@ -29,4 +28,7 @@ MonoBehaviour:
   - 0
   - 0
   - t
+  _index: 0
   _drag: 0
+  _weight: 0
+  _area: 0

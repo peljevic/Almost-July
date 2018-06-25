@@ -10,13 +10,18 @@ using System.Collections.Generic;
 using SpatialSlur.Core;
 using RC3.WFC;
 
+using UnityEngine;
+
 namespace RC3.Unity.WFCDemo
 {
     /// <summary>
     /// 
     /// </summary>
-    public class ProbabilisticTileSelector : TileSelector
+    public class ProbabilisticTileSelector : MonoBehaviour, ITileSelector
     {
+        [SerializeField] private TileSet _tileSet;
+        [SerializeField] private int _seed;
+
         private ProbabilitySelector _selector;
         private double[] _weights;
 
@@ -24,11 +29,10 @@ namespace RC3.Unity.WFCDemo
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="model"></param>
-        public ProbabilisticTileSelector(TileSet tileSet, int seed = 1)
+        private void Awake()
         {
-            _weights = GetTileWeights(tileSet).ToArray();
-            _selector = new ProbabilitySelector(_weights, new Random(seed));
+            _weights = GetTileWeights().ToArray();
+            _selector = new ProbabilitySelector(_weights, new System.Random(_seed));
         }
         
 
@@ -36,10 +40,10 @@ namespace RC3.Unity.WFCDemo
         /// 
         /// </summary>
         /// <returns></returns>
-        private IEnumerable<double> GetTileWeights(TileSet tileSet)
+        private IEnumerable<double> GetTileWeights()
         {
-            for (int i = 0; i < tileSet.Count; i++)
-                yield return tileSet[i].Weight;
+            for (int i = 0; i < _tileSet.Count; i++)
+                yield return _tileSet[i].Weight; // TODO assign actual weights
         }
 
 
@@ -48,11 +52,12 @@ namespace RC3.Unity.WFCDemo
         /// </summary>
         /// <param name="position"></param>
         /// <returns></returns>
-        public override int Select(int position)
+        public int Select(TileModel model, int position)
         {
-            var d = Model.GetDomain(position);
+            var d = model.GetDomain(position);
             _selector.SetWeights(GetModifiedWeights(d)); // update the weights in the selector
-            return d.ElementAt(_selector.Next());
+
+            return _selector.Next();
         }
 
 
@@ -63,7 +68,7 @@ namespace RC3.Unity.WFCDemo
         /// <returns></returns>
         private IEnumerable<double> GetModifiedWeights(ReadOnlySet<int> domain)
         {
-            for(int i =0; i <_weights.Length; i++)
+            for(int i = 0; i <_weights.Length; i++)
                 yield return domain.Contains(i) ? _weights[i] : 0.0;
         }
     }

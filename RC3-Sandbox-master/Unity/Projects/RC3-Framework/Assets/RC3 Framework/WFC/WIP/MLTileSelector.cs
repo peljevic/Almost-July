@@ -9,14 +9,13 @@ using System.Collections.Generic;
 
 using SpatialSlur.Core;
 using RC3.WFC;
-using System;
 
 namespace RC3.Unity.WFCDemo
 {
     /// <summary>
     /// 
     /// </summary>
-    public class MLTileSelector : TileSelector
+    public class MLTileSelector : ITileSelector
     {
         private MLSelectorAgent _agent;
         private ProbabilitySelector _selector;
@@ -32,20 +31,19 @@ namespace RC3.Unity.WFCDemo
                 throw new ArgumentNullException();
 
             _agent = agent;
-            _selector = new ProbabilitySelector(DefaultWeights, new Random(seed));
+            _selector = new ProbabilitySelector(GetDefaultWeights(tileSet.Count), new Random(seed));
         }
 
 
         /// <summary>
         /// 
         /// </summary>
-        private IEnumerable<double> DefaultWeights
+        /// <param name="count"></param>
+        /// <returns></returns>
+        private IEnumerable<double> GetDefaultWeights(int count)
         {
-            get
-            {
-                for (int i = 0; i < _model.TileCount; i++)
-                    yield return 1.0;
-            }
+            for (int i = 0; i < count; i++)
+                yield return 1.0;
         }
 
 
@@ -54,11 +52,11 @@ namespace RC3.Unity.WFCDemo
         /// </summary>
         /// <param name="position"></param>
         /// <returns></returns>
-        public override int Select(int position)
+        public int Select(TileModel model, int position)
         {
             _selector.SetWeights(_agent.GetWeights(position));
 
-            var d = Model.GetDomain(position);
+            var d = model.GetDomain(position);
             return d.ElementAt(_selector.Next());
         }
     }

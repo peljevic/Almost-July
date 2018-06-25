@@ -16,8 +16,9 @@ namespace RC3.Unity.WFCDemo
         [SerializeField] private SharedDigraph _grid;
         [SerializeField] private TileSet _tileSet;
         [SerializeField] private float _neededArea = 30;
+        [SerializeField] private float _maxDensity;
         [SerializeField] private float _areaTolerance;
-        [SerializeField] public float _allowedDisplacement;
+        [SerializeField] public float _allowedDisplacement = 0;
 
         List<VertexObject> _verts;
         private Digraph _graph;
@@ -31,9 +32,6 @@ namespace RC3.Unity.WFCDemo
         [Range(0.0f, 10000.0f)]
         [SerializeField]
         private float MaxTorque = 1000.0f;
-
-        private float BreakForce = Mathf.Infinity;
-        private float BreakTorque = Mathf.Infinity;
 
         private List<VertexObject> _meshedTiles;
         private List<VertexObject> _weakTiles;
@@ -74,7 +72,7 @@ namespace RC3.Unity.WFCDemo
                 }
                 if (Input.GetKeyDown(KeyCode.S))
                 {
-                    
+                  
                 }
             }
             
@@ -135,7 +133,7 @@ namespace RC3.Unity.WFCDemo
         {
             AreaAnalyzer();
             CountAllDensities();
-           // SunExposureAnalysis(); //TODO fix
+            // SunExposureAnalysis(); //TODO fix
             StructureAnalyzer();
         }
 
@@ -173,7 +171,7 @@ namespace RC3.Unity.WFCDemo
             {
                 _totalArea += v.Tile.Area;
             }
-            //Debug.Log("Total Volume " + _totalArea);
+            Debug.Log("Total Volume " + _totalArea);
             return _totalArea;
         }
 
@@ -193,7 +191,7 @@ namespace RC3.Unity.WFCDemo
                 _densities[i] = CountNeighbourhoodDensity(i);
                 //Debug.Log("Density is " + _densities[i]);
 
-                if (_densities[i] > 0.5f)
+                if (_densities[i] > _maxDensity)
                     _weakTiles.Add(_verts[i]);
                         // Debug.Log("Density on vertex " + i + "is too high");
             }
@@ -234,7 +232,7 @@ namespace RC3.Unity.WFCDemo
         {
             RemoveGravity();
             RemoveJoints();
-            ResetPositions();
+            //ResetPositions();
         }
 
         private float MinDistance()
@@ -275,8 +273,17 @@ namespace RC3.Unity.WFCDemo
             _kinematicPercent = _kinematicTiles / _meshedTiles.Count;
             roundN = (int)(_kinematicPercent * 100);
             Debug.Log("Non-empty tiles count is " + _meshedTiles.Count.ToString());
-            Debug.Log("Kinematic Tiles " + _kinematicPercent);
+            CountKinematic();
             Debug.Log("Kinematic Tile in % " + roundN);
+        }
+
+        private void CountKinematic()
+        {
+            foreach(var v in _verts)
+            {
+                if (v.Body.isKinematic) _kinematicTiles++;
+            }
+            Debug.Log("Kinematic Tiles " + _kinematicPercent);
         }
         
         private void AddJointsToConnected()
@@ -296,34 +303,35 @@ namespace RC3.Unity.WFCDemo
                     {
                         var vJoint = v.gameObject.AddComponent<FixedJoint>();
                         vJoint.connectedBody = vn.GetComponent<Rigidbody>();
-
-                        vJoint.breakForce = BreakForce;
-                        vJoint.breakTorque = BreakTorque;
                     }
                 }
             }
         }
 
         private void  CheckVelocity()
-        {            
+        {
             foreach (var v in _verts)
             {
-                var _displacement = MaxVelocity(v);
+                var _displacement = v.Body.velocity;
+                Debug.Log(_displacement);
 
-                if (_displacement > _allowedDisplacement)
-                {  
-                    _weakTiles.Add(v);
-                    //_displacementValues[v.Tile.Index] = _displacement;
-                    // v.GetComponent<Renderer>().material.color = Color.red;
-                }
-
-                else if (_displacement < _allowedDisplacement)
+                if (_displacement == Vector3.zero)
                 {
-                    _stableTiles.Add(v);
+                    Debug.Log("Displacement is 0");
+                    //    _weakTiles.Add(v);
+                    //    //_displacementValues[v.Tile.Index] = _displacement;
+                    //    // v.GetComponent<Renderer>().material.color = Color.red;
+                    //}
+
+                    //else if (_displacement == _allowedDisplacement)
+                    //{
+                    //    _stableTiles.Add(v);
+                    //}
                 }
             }
         }
 
+      
         private float MaxVelocity(VertexObject vertex)
         {
             var _XmeshDisplacement = vertex.GetComponent<Rigidbody>().velocity.x;
@@ -406,6 +414,7 @@ namespace RC3.Unity.WFCDemo
             {
                 var vertex = _verts[i];
                 vertex.transform.position = position[i];
+               
             }
         }
 
